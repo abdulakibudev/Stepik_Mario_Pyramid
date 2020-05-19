@@ -1,99 +1,53 @@
+// Grabbing all the resources
+const range = document.getElementById("height");
+const heightNumSpan = document.getElementById("height_num");
+const selectSymbol = document.getElementById("symbol");
 
-printPyramid(5);
+// Default Value at launch
+range.value = 5;
 
+// Event for range change
+range.addEventListener("input", (e) => {
+    heightNumSpan.textContent = e.target.value;
+    drawPyramid(parseInt(e.target.value), selectSymbol.value);
+});
 
-/*
- * printPyramid
- *
- * Prints to the console a pyramid of '#' characters of the specified height
- * For example, if height is 5, the console will look like this:
- *          ##
- *         ###
- *        ####
- *       #####
- *      ######
- */
-function printPyramid(height) {
-    console.log("Uh oh... the pyramid is under construction.");
-    console.log("Check back soon, our developers are hard at work as we speak!");
+// Event for select change
+selectSymbol.addEventListener("change", (e) => {
+    drawPyramid(parseInt(range.value), e.target.value);
+});
 
-    // TODO
-    // print that pyramid!
-
-    for (let i = 0; i < height; i++) {
-        let bricks ="";
-        for (let j = i + 2; j > 0; j--) {
-            bricks += "#";
-        }
-        console.log(bricks);
-    }
-
-    
-    for (let i = 0; i < height; i++) {
-        let bricks ="";
-        for (let j = height + 1; j > 0; j--) {
-            if (j <= i + 2) {
-                bricks += "#";
-            } else {
-                bricks += " ";
-            }
-        }
-        console.log(bricks);
-    }
-    
-}
-
-function drawPyramid1(height) {
-    if (height > 0) {
-        document.getElementById("construction").style.display = "none";
-    } 
+// Function that redraws the pyramid on screen
+function drawPyramid(height, symbol) {
+    // Grab the container
     const container = document.getElementById("pyramid");
+    // Empty the container if it already contains something
+    container.innerHTML = "";
+
+    // Build the pyramid
     for (let i = 0; i < height; i++) {
+        // Create a <p> tag
         const p = document.createElement("P");
-        let bricks ="";
+        // This text will be appended to the <p> tag
+        let bricks = "";
         for (let j = height + 1; j > 0; j--) {
             if (j <= i + 2) {
-                bricks += "#";
+                // Append either the symbol for the brick
+                bricks += symbol;
             } else {
+                // Or append an empty space
                 bricks += "&nbsp;";
             }
         }
+        // Apend the text to the <p> tag
         p.innerHTML = bricks;
+        // Append the <p> tag to the container
         container.appendChild(p);
     }
     
 }
 
-function drawPyramid2(height) {
-    if (height > 0) {
-        document.getElementById("construction").style.display = "none";
-    }
-    //Get a reference to the container div
-    const container = document.getElementById("pyramid");
-    for (let i = 0; i < height; i++) {
-        //Create a <br> tag to break onto the next line
-        const br = document.createElement("BR");
-        
-        for (let j = height + 1; j > 0; j--) {
-            //For each "brick" start with an emply div
-            const div = document.createElement("DIV");
-            if (j <= i + 2) {
-                //Add the .brick class if it's going to be a brick
-                div.classList.add("brick");
-                //Append the brick div to the container
-                container.appendChild(div);
-            } else {
-                //Add the .space ckass if it's going to be an empty space
-                div.classList.add("space");
-                //Append the space div to the container
-                container.appendChild(div);
-            }
-        }
-        //After creating one row, append the <br> tag to move to the next line
-        container.appendChild(br);
-    }
-    
-}
-
-drawPyramid1(20);
-drawPyramid2(20);
+// Initial Values at Launch
+const rangeVal = parseInt(range.value);
+heightNumSpan.textContent = rangeVal;
+drawPyramid(rangeVal, selectSymbol.value);

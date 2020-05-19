@@ -7,37 +7,62 @@
         #pyramid {
             font-family: "Courier New", monospace;
             line-height: 0;
+            /* background-color: #F1F1F1; */
+            color: #B36093;
+            font-size: 2rem;
+            text-align: center;
         }
 
-        .brick {
-            width: 20px;
-            height: 20px;
-            background-color: chocolate;
-            outline: 2px solid white;
-            display: inline-block;
+        .controls {
+            background-color: #D2D2D2;
+            padding: 25px;
+            text-align: center;
+            font-weight: bold;
         }
 
-        .space {
-            width: 20px;
-            height: 20px;
-            display: inline-block;
+        header {
+            background-color: #B36093;
+            color: #ECE3EB;
+            width: 60%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1px;
+            border-radius: 5px;
+        }
+
+        main {
+            width: 50%;
+            margin: 30px auto;
+            border: 2px solid #B36093;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Mario 2</h1>
-    <h3>Behold this wonderful pyramid:</h3>
-    <div id="pyramid">
-        <!-- Our pyramid will go inside here -->
-        <div id="construction">
-            <p>Uh oh! the pyramid is still under construction.</p>
-            <p>Check back again soon... our developers are hard at wrk as we speak!</p>
+    <header>
+        <h1 style="font-size: 3rem;">Pyramid Slide</h1>
+        <h3 style="font-size: 1.5rem;">Behold this wonderful pyramid:</h3>
+    </header>
+    <main>
+        <div class="controls">
+            <label for="symbol">Brick Symbol: </label>
+            <select name="symbol" id="symbol">
+                <option value="#">#</option>
+                <option value="@">@</option>
+                <option value="X">X</option>
+                <option value="$">$</option>
+            </select>
+            &nbsp;&nbsp;
+            <label for="height">How High?</label>
+            <input type="range" name="height" id="height" min="1" max="20">
+            <span id="height_num"></span>
         </div>
-    </div>
+        <div id="pyramid">
+            <!-- Our pyramid will go inside here -->
+        </div>
+    </main>
     <script src="mario.js"></script>
 </body>
-
-﻿
 
 </html>
